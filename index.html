@@ -302,6 +302,66 @@
     scaleVideo();
   })();
 </script>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop preload="auto" style="display:none;">
+  <source src="https://scottholmesmusic.com/wp-content/uploads/edd/2020/09/The-Future-Is-Ours.mp3" type="audio/mpeg">
+</audio>
+<div id="music-btn" onclick="toggleMusic()" style="
+  position:fixed; bottom:20px; right:20px; z-index:9999;
+  width:48px; height:48px; border-radius:50%;
+  background:var(--peel); color:var(--lime);
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  border:2px solid var(--lime);
+  transition: transform 0.2s;
+" title="Toggle music">🔊</div>
+
+<script>
+var musicPlaying = false;
+var music = document.getElementById('bgMusic');
+music.volume = 0.25;
+
+// Try autoplay on first interaction
+document.addEventListener('click', function startMusic() {
+  if (!musicPlaying) {
+    music.play().then(function() {
+      musicPlaying = true;
+      document.getElementById('music-btn').textContent = '🔊';
+    }).catch(function(){});
+  }
+  document.removeEventListener('click', startMusic);
+}, { once: true });
+
+// Also try autoplay immediately
+window.addEventListener('load', function() {
+  music.play().then(function() {
+    musicPlaying = true;
+  }).catch(function() {
+    // Autoplay blocked - user needs to click
+    document.getElementById('music-btn').style.animation = 'pulse-btn 1s ease-in-out infinite';
+  });
+});
+
+function toggleMusic() {
+  var btn = document.getElementById('music-btn');
+  if (musicPlaying) {
+    music.pause();
+    musicPlaying = false;
+    btn.textContent = '🔇';
+  } else {
+    music.play();
+    musicPlaying = true;
+    btn.textContent = '🔊';
+  }
+}
+</script>
+<style>
+@keyframes pulse-btn {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+</style>
 <div id="video-wrapper" style="width:1920px;height:1080px;position:relative;overflow:hidden;">
 
 <!-- ══════ SCENE 1: Welcome ══════ -->
