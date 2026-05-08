@@ -2,542 +2,531 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Avicado Happy Hour</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homiez Groups · Avicado</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --peel: #003316;
-    --lime: #DCE58A;
-    --lime-mid: #42A236;
-    --gold: #FFAC00;
-    --salt: #F3EDE3;
-    --white: #FFFFFF;
-    --garlic: #E1D0B3;
+    --avocado-peel:   #003316;
+    --freshly-mashed: #42A236;
+    --zesty-lime:     #DCE58A;
+    --bell-pepper:    #FFAC00;
+    --salt:           #F3EDE3;
+    --molcajete:      #A4AEAA;
+    --garlic:         #E1D0B3;
+    --diced-tomato:   #ED7C76;
+    --blue-corn:      #81D1F4;
+ 
+    --gamer-bg:     #071a0c;
+    --gamer-border: #42A236;
+    --gamer-head:   linear-gradient(135deg,#003316,#1a6e12);
+    --gamer-avatar: #42A236;
+ 
+    --chatty-bg:     #06141a;
+    --chatty-border: #81D1F4;
+    --chatty-head:   linear-gradient(135deg,#003316,#0e5a75);
+    --chatty-avatar: #81D1F4;
+ 
+    --mixed-bg:     #1a1200;
+    --mixed-border: #FFAC00;
+    --mixed-head:   linear-gradient(135deg,#003316,#7a5000);
+    --mixed-avatar: #FFAC00;
+ 
+    --bg:          #061009;
+    --surface:     #0c1a0f;
+    --border:      #163320;
+    --person-bg:   #0f1f13;
+    --person-hov:  #162a1a;
+    --txt:         #F3EDE3;
+    --muted:       #A4AEAA;
+ 
+    --s-green:  #42A236;
+    --s-yellow: #FFAC00;
+    --s-red:    #ED7C76;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    margin: 0; padding: 0;
-    background: #111;
-    font-family: 'Outfit', sans-serif;
-    overflow: hidden;
+ 
+  *{box-sizing:border-box;margin:0;padding:0;}
+ 
+  body{
+    background:var(--bg);
+    font-family:'Outfit',sans-serif;
+    color:var(--txt);
+    min-height:100vh;
   }
-  #video-wrapper {
-    width: 1920px;
-    height: 1080px;
-    position: relative;
-    overflow: hidden;
-    background: var(--salt);
+ 
+  /* TOP BAR */
+  .top-bar{
+    background:var(--avocado-peel);
+    border-bottom:1px solid #082210;
+    padding:12px 24px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    position:sticky;top:0;z-index:100;
+    box-shadow:0 2px 24px rgba(0,0,0,0.5);
   }
-  .scene {
-    position: absolute;
-    inset: 0;
-    width: 1920px;
-    height: 1080px;
-    opacity: 0;
-    pointer-events: none;
-    background: var(--salt);
+  .brand-name{
+    font-size:1.3rem;font-weight:800;
+    color:var(--zesty-lime);letter-spacing:0.08em;
   }
-  .scene.active { opacity: 1; pointer-events: all; }
-
-  /* ───── KEYFRAMES ───── */
-  @keyframes juana-in { from { opacity: 0; transform: translateX(-50%) scale(0.85); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
-  @keyframes blob-in { from { transform: scale(0); } to { transform: scale(1); } }
-  @keyframes fade-up { from { opacity: 0; transform: translateX(-50%) translateY(30px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
-  @keyframes fade-up-abs { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes slide-left { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
-  @keyframes pop-in { from { opacity: 0; transform: translateX(-50%) scale(0.8); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
-  @keyframes pop-in-abs { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes float-dot { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
-  @keyframes float-dot2 { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(10deg); } }
-
-  .fade-abs { animation: fade-up-abs 0.7s ease forwards !important; }
-  .pop-abs { animation: pop-in-abs 0.5s cubic-bezier(.34,1.56,.64,1) forwards !important; }
-
-  /* ───── SCENE 1 ───── */
-  #s1 { background: var(--salt); }
-  #s1 .blob {
-    position: absolute; width: 820px; height: 820px;
-    background: var(--lime); border-radius: 50% 60% 55% 65% / 60% 50% 65% 55%;
-    top: 80px; left: 540px; transform: scale(0);
-    animation: blob-in 0.9s cubic-bezier(.34,1.56,.64,1) forwards; animation-delay: 0.1s;
+  .divider{width:1px;height:22px;background:rgba(220,229,138,0.18);}
+  .page-title{font-size:0.9rem;font-weight:600;color:var(--garlic);}
+ 
+  .top-right{display:flex;align-items:center;gap:14px;margin-left:auto;flex-wrap:wrap;}
+ 
+  .legend{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+  .leg-item{display:flex;align-items:center;gap:5px;font-size:0.73rem;font-weight:600;color:var(--garlic);opacity:.85;}
+  .leg-dot{width:8px;height:8px;border-radius:50%;}
+  .leg-sep{width:1px;height:18px;background:rgba(220,229,138,0.15);}
+ 
+  .sz-legend{display:flex;gap:7px;}
+  .sz-chip{display:flex;align-items:center;gap:3px;padding:2px 8px;border-radius:99px;font-size:0.68rem;font-weight:700;}
+  .sz-chip.g{background:rgba(66,162,54,.18);color:#6dd468;border:1px solid rgba(66,162,54,.3);}
+  .sz-chip.y{background:rgba(255,172,0,.18);color:#ffc940;border:1px solid rgba(255,172,0,.3);}
+  .sz-chip.r{background:rgba(237,124,118,.18);color:#f09090;border:1px solid rgba(237,124,118,.3);}
+ 
+  .add-btn{
+    display:flex;align-items:center;gap:6px;
+    padding:7px 16px;border-radius:99px;
+    background:var(--freshly-mashed);border:none;
+    color:var(--avocado-peel);font-family:'Outfit',sans-serif;
+    font-size:0.8rem;font-weight:700;cursor:pointer;
+    transition:background .15s,transform .15s,box-shadow .15s;
+    white-space:nowrap;
   }
-  #s1 .welcome-label {
-    position: absolute; top: 160px; left: 50%; transform: translateX(-50%);
-    font-size: 26px; font-weight: 600; letter-spacing: 5px; color: var(--gold); text-transform: uppercase;
-    opacity: 0; animation: fade-up 0.6s ease forwards; animation-delay: 0.6s;
+  .add-btn:hover{background:var(--zesty-lime);transform:translateY(-1px);box-shadow:0 4px 14px rgba(66,162,54,.35);}
+  .add-btn svg{width:13px;height:13px;}
+ 
+  /* GRID */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(265px,1fr));
+    gap:14px;padding:22px 24px;
   }
-  #s1 h1 {
-    position: absolute; top: 230px; left: 50%; transform: translateX(-50%);
-    font-size: 90px; font-weight: 800; color: var(--peel); text-align: center; white-space: nowrap;
-    opacity: 0; animation: fade-up 0.7s ease forwards; animation-delay: 0.8s;
+ 
+  /* CARD */
+  .group-card{border-radius:11px;border:1.5px solid;overflow:hidden;transition:box-shadow .2s;}
+  .type-gamer {border-color:var(--gamer-border);background:var(--gamer-bg);}
+  .type-chatty{border-color:var(--chatty-border);background:var(--chatty-bg);}
+  .type-mixed {border-color:var(--mixed-border); background:var(--mixed-bg);}
+  .group-card.drag-over{box-shadow:0 0 0 2.5px var(--zesty-lime),0 0 18px rgba(220,229,138,.2);}
+ 
+  .group-header{
+    padding:10px 13px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid rgba(255,255,255,.06);
   }
-  #s1 .subtitle {
-    position: absolute; top: 440px; left: 50%; transform: translateX(-50%);
-    font-size: 34px; font-weight: 400; color: var(--peel); text-align: center;
-    opacity: 0; animation: fade-up 0.6s ease forwards; animation-delay: 1.1s;
+  .type-gamer  .group-header{background:var(--gamer-head);}
+  .type-chatty .group-header{background:var(--chatty-head);}
+  .type-mixed  .group-header{background:var(--mixed-head);}
+ 
+  .g-num{font-size:1rem;font-weight:800;color:var(--zesty-lime);min-width:28px;}
+  .g-pill{
+    font-size:0.63rem;font-weight:700;padding:2px 7px;border-radius:99px;
+    background:rgba(220,229,138,.14);color:var(--zesty-lime);
+    text-transform:uppercase;letter-spacing:.06em;
+    border:1px solid rgba(220,229,138,.22);
   }
-  #s1 .dot { position: absolute; border-radius: 50%; animation: float-dot 3s ease-in-out infinite; }
-
-  /* ───── SCENE 2 ───── */
-  #s2 { background: var(--salt); }
-  #s2 .blob-l {
-    position: absolute; width: 420px; height: 420px; background: var(--lime);
-    border-radius: 45% 55% 50% 50%; bottom: -80px; left: -80px; z-index: 0;
-    opacity: 0; animation: fade-in 0.8s ease forwards; animation-delay: 0.1s;
+  .g-count{
+    margin-left:auto;display:flex;align-items:center;gap:4px;
+    font-size:0.78rem;font-weight:700;color:var(--salt);
   }
-  #s2 .blob-r {
-    position: absolute; width: 340px; height: 340px; background: var(--garlic);
-    border-radius: 50% 45% 55% 50%; top: -60px; right: -60px; z-index: 0;
-    opacity: 0; animation: fade-in 0.8s ease forwards; animation-delay: 0.1s;
+  .sz-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0;}
+  .sz-dot.g{background:var(--s-green);box-shadow:0 0 5px var(--s-green);}
+  .sz-dot.y{background:var(--s-yellow);box-shadow:0 0 5px var(--s-yellow);}
+  .sz-dot.r{background:var(--s-red);box-shadow:0 0 5px var(--s-red);animation:pulse 1.2s infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 4px var(--s-red);}50%{box-shadow:0 0 12px var(--s-red);}}
+ 
+  .people-area{
+    padding:9px;min-height:56px;
+    display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start;
   }
-  #s2 .top-label {
-    position: absolute; top: 70px; left: 50%; transform: translateX(-50%);
-    font-size: 24px; font-weight: 600; letter-spacing: 4px; color: var(--gold); text-transform: uppercase;
-    opacity: 0; animation: fade-up 0.5s ease forwards; animation-delay: 0.2s;
+ 
+  /* CHIP */
+  .person-chip{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:4px 8px 4px 5px;border-radius:7px;
+    background:var(--person-bg);border:1px solid var(--border);
+    font-size:0.74rem;font-weight:600;cursor:grab;user-select:none;
+    transition:background .15s,transform .15s,box-shadow .15s;
+    white-space:nowrap;color:var(--salt);
   }
-  #s2 .top-label::before, #s2 .top-label::after { content: "✦"; margin: 0 10px; font-size: 16px; }
-  #s2 h2 {
-    position: absolute; top: 130px; left: 50%; transform: translateX(-50%);
-    font-size: 84px; font-weight: 800; color: var(--peel); white-space: nowrap;
-    opacity: 0; animation: fade-up 0.7s ease forwards; animation-delay: 0.4s;
+  .person-chip:hover{
+    background:var(--person-hov);transform:translateY(-1px);
+    box-shadow:0 3px 10px rgba(0,0,0,.35);
+    border-color:rgba(220,229,138,.18);
   }
-  #s2 .card {
-    position: absolute; background: var(--white); border-radius: 28px; border: 3px solid var(--peel);
-    padding: 44px 56px; width: 780px; top: 290px; left: 570px; z-index: 2;
-    opacity: 0; animation: fade-up 0.7s ease forwards; animation-delay: 0.6s;
+  .person-chip.dragging{opacity:.35;cursor:grabbing;}
+  .p-avatar{
+    width:17px;height:17px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.56rem;font-weight:800;flex-shrink:0;
+    color:var(--avocado-peel);
   }
-  #s2 .card-icon { font-size: 64px; margin-bottom: 14px; display: block; }
-  #s2 .card h3 { font-size: 40px; font-weight: 800; color: var(--peel); margin-bottom: 16px; }
-  #s2 .card p { font-size: 26px; font-weight: 400; color: var(--peel); opacity: 0.75; line-height: 1.5; }
-  #s2 .chip {
-    position: absolute; display: inline-flex; align-items: center; gap: 10px;
-    background: var(--peel); color: var(--lime); border-radius: 60px;
-    padding: 16px 32px; font-size: 28px; font-weight: 700;
-    opacity: 0; animation: pop-in 0.5s cubic-bezier(.34,1.56,.64,1) forwards; z-index: 2;
+  .type-gamer  .p-avatar{background:var(--gamer-avatar);}
+  .type-chatty .p-avatar{background:var(--chatty-avatar);}
+  .type-mixed  .p-avatar{background:var(--mixed-avatar);}
+  .chip-name{max-width:128px;overflow:hidden;text-overflow:ellipsis;}
+ 
+  /* UNASSIGNED */
+  .unassigned-section{
+    margin:0 24px 30px;
+    border:1.5px dashed rgba(164,174,170,.25);
+    border-radius:11px;overflow:hidden;background:var(--surface);
   }
-  #s2 .chip svg { width: 28px; height: 28px; fill: var(--lime); }
-
-  /* ───── SCENE 3 ───── */
-  #s3 { background: var(--lime); }
-  #s3 .top-label {
-    position: absolute; top: 52px; left: 50%; transform: translateX(-50%);
-    font-size: 22px; font-weight: 600; letter-spacing: 4px; color: var(--peel); text-transform: uppercase;
-    opacity: 0; animation: fade-up 0.5s ease forwards; animation-delay: 0.2s;
+  .un-header{
+    padding:9px 13px;display:flex;align-items:center;gap:9px;
+    border-bottom:1px solid var(--border);background:rgba(0,51,22,.45);
   }
-  #s3 .top-label::before, #s3 .top-label::after { content: "✦"; margin: 0 10px; }
-  #s3 h2 {
-    position: absolute; top: 100px; left: 50%; transform: translateX(-50%);
-    font-size: 78px; font-weight: 800; color: var(--peel); text-align: center;
-    opacity: 0; animation: fade-up 0.7s ease forwards; animation-delay: 0.4s;
+  .un-title{font-size:0.83rem;font-weight:700;color:var(--molcajete);}
+  .un-count{font-size:0.73rem;color:var(--molcajete);opacity:.65;}
+  .unassigned-section .people-area{min-height:44px;}
+  .unassigned-section .p-avatar{background:var(--molcajete);}
+ 
+  /* MODAL */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;
+    background:rgba(0,16,6,.8);backdrop-filter:blur(8px);
+    z-index:1000;align-items:center;justify-content:center;
   }
-  #s3 .cal-card {
-    position: absolute; background: var(--white); border-radius: 24px; border: 3px solid var(--peel);
-    width: 600px; top: 260px; left: 320px; overflow: hidden;
-    opacity: 0; animation: fade-up 0.7s ease forwards; animation-delay: 0.6s;
+  .modal-overlay.open{display:flex;}
+  .modal{
+    background:#0a1f0e;border:1.5px solid #1a3d20;
+    border-radius:15px;padding:26px;width:355px;max-width:95vw;
+    box-shadow:0 24px 64px rgba(0,0,0,.65);animation:min .2s ease;
   }
-  #s3 .cal-header {
-    background: var(--peel); padding: 20px 30px;
-    font-size: 26px; font-weight: 800; color: var(--lime); letter-spacing: 3px;
+  @keyframes min{from{opacity:0;transform:scale(.94) translateY(12px);}to{opacity:1;transform:scale(1) translateY(0);}}
+ 
+  .modal h2{font-size:1.1rem;font-weight:800;color:var(--zesty-lime);margin-bottom:18px;}
+ 
+  .m-field{margin-bottom:13px;}
+  .m-field label{
+    display:block;font-size:0.7rem;font-weight:700;color:var(--molcajete);
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;
   }
-  #s3 .cal-days {
-    display: grid; grid-template-columns: repeat(7,1fr);
-    padding: 14px 22px 6px; font-size: 18px; font-weight: 700; color: var(--peel); opacity: 0.4; text-align: center;
+  .m-field input,.m-field select{
+    width:100%;padding:9px 11px;border-radius:8px;
+    background:#0f2214;border:1.5px solid #1a3d20;
+    color:var(--salt);font-family:'Outfit',sans-serif;
+    font-size:0.86rem;font-weight:500;outline:none;
+    transition:border-color .15s;appearance:none;
   }
-  #s3 .cal-grid {
-    display: grid; grid-template-columns: repeat(7,1fr);
-    padding: 0 22px 22px; text-align: center; gap: 4px;
-    font-size: 20px; font-weight: 600; color: var(--peel);
+  .m-field input:focus,.m-field select:focus{border-color:var(--freshly-mashed);}
+  .m-field select option{background:#0f2214;}
+  .m-field input::placeholder{color:var(--molcajete);opacity:.55;}
+  .m-err{font-size:0.71rem;color:var(--diced-tomato);margin-top:4px;display:none;font-weight:600;}
+  .m-err.show{display:block;}
+ 
+  .m-actions{display:flex;gap:9px;margin-top:18px;}
+  .m-actions button{
+    flex:1;padding:9px;border-radius:8px;border:none;
+    font-family:'Outfit',sans-serif;font-size:0.83rem;font-weight:700;
+    cursor:pointer;transition:opacity .15s,transform .15s;
   }
-  #s3 .cal-grid span { padding: 8px 4px; border-radius: 10px; }
-  #s3 .cal-grid .thu { background: var(--gold); color: var(--peel); font-weight: 800; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 19px; }
-  #s3 .cal-grid .thu2 { background: var(--lime-mid); color: var(--white); font-weight: 800; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 19px; }
-  #s3 .info-block {
-    position: absolute; top: 260px; left: 730px; right: 60px;
+  .m-actions button:hover{opacity:.86;transform:translateY(-1px);}
+  .btn-c{background:#173320;color:var(--molcajete);}
+  .btn-a{background:var(--freshly-mashed);color:var(--avocado-peel);}
+ 
+  /* GHOST */
+  #ghost{
+    position:fixed;pointer-events:none;z-index:9999;
+    padding:5px 12px;border-radius:8px;
+    background:var(--avocado-peel);border:1px solid var(--zesty-lime);
+    font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:600;
+    color:var(--zesty-lime);transform:translate(-50%,-50%);display:none;
   }
-  #s3 .info-item {
-    display: flex; align-items: center; gap: 24px; margin-bottom: 28px;
-    background: var(--white); border-radius: 20px; border: 3px solid var(--peel); padding: 26px 36px;
-    opacity: 0; animation: slide-left 0.6s ease forwards;
-  }
-  #s3 .info-icon {
-    width: 72px; height: 72px; border-radius: 16px; background: var(--peel);
-    display: flex; align-items: center; justify-content: center; font-size: 38px; flex-shrink: 0;
-  }
-  #s3 .info-label { font-size: 18px; font-weight: 600; letter-spacing: 2px; color: var(--lime-mid); text-transform: uppercase; margin-bottom: 4px; }
-  #s3 .info-value { font-size: 38px; font-weight: 800; color: var(--peel); }
-
-  /* ───── SCENE 4 ───── */
-  #s4 { background: var(--salt); }
-  #s4 .top-label {
-    position: absolute; top: 52px; left: 50%; transform: translateX(-50%);
-    font-size: 22px; font-weight: 600; letter-spacing: 4px; color: var(--gold); text-transform: uppercase;
-    opacity: 0; animation: fade-up 0.5s ease forwards; animation-delay: 0.2s;
-  }
-  #s4 .top-label::before, #s4 .top-label::after { content: "✦"; margin: 0 10px; }
-  #s4 h2 {
-    position: absolute; top: 104px; left: 50%; transform: translateX(-50%);
-    font-size: 72px; font-weight: 800; color: var(--peel); text-align: center; white-space: nowrap;
-    opacity: 0; animation: fade-up 0.7s ease forwards; animation-delay: 0.4s;
-  }
-  #s4 .activity-grid {
-    position: absolute; top: 270px; left: 110px; right: 110px; display: flex; gap: 44px;
-  }
-  #s4 .act-card {
-    flex: 1; background: var(--white); border-radius: 24px; border: 3px solid var(--peel);
-    padding: 40px 36px; text-align: center; opacity: 0;
-  }
-  #s4 .act-icon {
-    width: 100px; height: 100px; border-radius: 26px;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px; font-size: 52px;
-  }
-  #s4 .act-icon.green { background: var(--lime-mid); }
-  #s4 .act-icon.gold { background: var(--gold); }
-  #s4 .act-icon.lime { background: var(--lime); }
-  #s4 .act-badge {
-    display: inline-block; padding: 6px 18px; border-radius: 50px;
-    font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;
-  }
-  #s4 .act-badge.green { background: var(--lime-mid); color: var(--white); }
-  #s4 .act-badge.gold { background: var(--gold); color: var(--peel); }
-  #s4 .act-badge.lime { background: var(--lime); color: var(--peel); }
-  #s4 .act-card h3 { font-size: 38px; font-weight: 800; color: var(--peel); margin-bottom: 12px; }
-  #s4 .act-card p { font-size: 21px; color: var(--peel); opacity: 0.7; line-height: 1.5; }
-
-  /* ───── SCENE 5 ───── */
-  #s5 { background: var(--peel); }
-  #s5 .top-label {
-    position: absolute; top: 38px; left: 50%; transform: translateX(-50%);
-    font-size: 22px; font-weight: 600; letter-spacing: 4px; color: var(--gold); text-transform: uppercase;
-    opacity: 0; animation: fade-up 0.5s ease forwards; animation-delay: 0.2s;
-  }
-  #s5 .top-label::before, #s5 .top-label::after { content: "✦"; margin: 0 10px; }
-  #s5 h2 {
-    position: absolute; top: 84px; left: 50%; transform: translateX(-50%);
-    font-size: 78px; font-weight: 800; color: var(--salt); text-align: center; white-space: nowrap;
-    opacity: 0; animation: fade-up 0.7s ease forwards; animation-delay: 0.4s;
-  }
-  #s5 .group-grid {
-    position: absolute; left: 80px; right: 80px; display: flex; gap: 40px;
-    align-items: flex-start; top: 360px;
-  }
-  #s5 .grp-card {
-    flex: 1; border-radius: 24px; border: 3px solid rgba(255,255,255,0.2);
-    padding: 36px 30px; text-align: center; opacity: 0;
-    align-self: flex-start;
-  }
-  #s5 .grp-card.chatty { background: var(--lime); }
-  #s5 .grp-card.gamer { background: var(--gold); }
-  #s5 .grp-card.mix { background: var(--lime-mid); }
-  #s5 .grp-emoji { font-size: 72px; margin-bottom: 16px; display: block; }
-  #s5 .grp-name { font-size: 44px; font-weight: 800; color: var(--peel); margin-bottom: 12px; }
-  #s5 .grp-desc { font-size: 22px; font-weight: 400; color: var(--peel); opacity: 0.85; line-height: 1.45; }
-  #s5 .juana-callout {
-    position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%);
-    background: var(--gold); border: 3px solid var(--peel);
-    border-radius: 60px; padding: 22px 56px;
-    font-size: 30px; font-weight: 700; color: var(--peel); white-space: nowrap;
-    opacity: 0; animation: juana-in 0.5s cubic-bezier(.34,1.56,.64,1) forwards; animation-delay: 1.8s;
-  }
-
-  /* ───── SCENE 6 ───── */
-  #s6 { background: var(--lime); }
-  #s6 .blob-tl {
-    position: absolute; width: 340px; height: 340px; background: var(--peel);
-    border-radius: 60% 40% 50% 50%; top: -170px; left: -170px;
-    opacity: 0; animation: fade-in 0.8s ease forwards; animation-delay: 0.1s;
-  }
-  #s6 .blob-br {
-    position: absolute; width: 380px; height: 380px; background: var(--lime-mid);
-    border-radius: 45% 55%; bottom: -80px; right: -60px;
-    opacity: 0; animation: fade-in 0.8s ease forwards; animation-delay: 0.1s;
-  }
-  #s6 .top-label {
-    position: absolute; top: 130px; left: 50%; transform: translateX(-50%);
-    font-size: 24px; font-weight: 600; letter-spacing: 4px; color: var(--peel); text-transform: uppercase;
-    opacity: 0; z-index: 2; animation: fade-up 0.5s ease forwards; animation-delay: 0.3s;
-  }
-  #s6 .top-label::before, #s6 .top-label::after { content: "✦"; margin: 0 10px; }
-  #s6 h2 {
-    position: absolute; top: 210px; left: 50%; transform: translateX(-50%);
-    font-size: 108px; font-weight: 800; color: var(--peel); text-align: center; line-height: 1.05; z-index: 2; white-space: nowrap;
-    opacity: 0; animation: fade-up 0.8s ease forwards; animation-delay: 0.5s;
-  }
-  #s6 .tagline {
-    position: absolute; top: 540px; left: 50%; transform: translateX(-50%);
-    font-size: 38px; font-weight: 600; color: var(--peel); opacity: 0.75;
-    text-align: center; z-index: 2; white-space: nowrap;
-    opacity: 0; animation: fade-up 0.6s ease forwards; animation-delay: 0.8s;
-  }
-  #s6 .dot { position: absolute; border-radius: 50%; z-index: 1; animation: float-dot2 3s ease-in-out infinite; }
-
-  /* Progress bar */
-  #progress { position: absolute; bottom: 0; left: 0; right: 0; height: 8px; background: rgba(0,51,22,0.15); z-index: 100; }
-  #progress-bar { height: 100%; background: var(--peel); transition: width 0.3s ease; width: 0%; }
 </style>
 </head>
 <body>
+ 
+<div class="top-bar">
+  <span class="brand-name">AVICADO</span>
+  <div class="divider"></div>
+  <span class="page-title">Homiez Groups 🎉</span>
+ 
+  <div class="top-right">
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#42A236"></div> Gamers 🎲</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#FFAC00"></div> Mixed ⚡</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#81D1F4"></div> Chatty 💬</div>
+      <div class="leg-sep"></div>
+      <div class="sz-legend">
+        <div class="sz-chip g">● 1–4</div>
+        <div class="sz-chip y">● 5–6</div>
+        <div class="sz-chip r">● 7+</div>
+      </div>
+    </div>
+    <button class="add-btn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      Add Member
+    </button>
+  </div>
+</div>
+ 
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="maybeClose(event)">
+  <div class="modal">
+    <h2>Add New Member</h2>
+    <div class="m-field">
+      <label>Full Name</label>
+      <input type="text" id="inp-name" placeholder="e.g. Jane Smith"
+             oninput="clearErr()" onkeydown="if(event.key==='Enter')submitModal()"/>
+      <div class="m-err" id="m-err"></div>
+    </div>
+    <div class="m-field">
+      <label>Assign to Group</label>
+      <select id="inp-group"><option value="0">— Unassigned</option></select>
+    </div>
+    <div class="m-field">
+      <label>Happy Hour Preference</label>
+      <select id="inp-type">
+        <option value="gamer">🎲 Gamers</option>
+        <option value="mixed" selected>⚡ Mixed</option>
+        <option value="chatty">💬 Chatty</option>
+      </select>
+    </div>
+    <div class="m-actions">
+      <button class="btn-c" onclick="closeModal()">Cancel</button>
+      <button class="btn-a" onclick="submitModal()">Add Member</button>
+    </div>
+  </div>
+</div>
+ 
+<div class="grid" id="groups-grid"></div>
+ 
+<div class="unassigned-section" id="unassigned-section">
+  <div class="un-header">
+    <span class="un-title">Unassigned</span>
+    <span class="un-count" id="un-count"></span>
+  </div>
+  <div class="people-area" id="un-area" data-group="0"></div>
+</div>
+ 
+<div id="ghost"></div>
+ 
 <script>
-  (function() {
-    function scaleVideo() {
-      var scaleX = window.innerWidth / 1920;
-      var scaleY = window.innerHeight / 1080;
-      var scale = Math.min(scaleX, scaleY);
-      var el = document.getElementById('video-wrapper');
-      if (!el) return;
-      var scaledW = Math.round(1920 * scale);
-      var scaledH = Math.round(1080 * scale);
-      el.style.transform = 'scale(' + scale + ')';
-      el.style.transformOrigin = 'top left';
-      el.style.marginLeft = Math.max(0, Math.round((window.innerWidth - scaledW) / 2)) + 'px';
-      el.style.marginTop = Math.max(0, Math.round((window.innerHeight - scaledH) / 2)) + 'px';
-      document.body.style.width = window.innerWidth + 'px';
-      document.body.style.height = window.innerHeight + 'px';
-      document.body.style.overflow = 'hidden';
-    }
-    window.addEventListener('load', scaleVideo);
-    window.addEventListener('resize', scaleVideo);
-    scaleVideo();
-  })();
-</script>
-
-<!-- Background Music -->
-<audio id="bgMusic" loop preload="auto" style="display:none;">
-  <source src="https://scottholmesmusic.com/wp-content/uploads/edd/2020/09/The-Future-Is-Ours.mp3" type="audio/mpeg">
-</audio>
-<div id="music-btn" onclick="toggleMusic()" style="
-  position:fixed; bottom:20px; right:20px; z-index:9999;
-  width:48px; height:48px; border-radius:50%;
-  background:var(--peel); color:var(--lime);
-  display:flex; align-items:center; justify-content:center;
-  font-size:22px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.3);
-  border:2px solid var(--lime);
-  transition: transform 0.2s;
-" title="Toggle music">🔊</div>
-
-<script>
-var musicPlaying = false;
-var music = document.getElementById('bgMusic');
-music.volume = 0.25;
-
-// Try autoplay on first interaction
-document.addEventListener('click', function startMusic() {
-  if (!musicPlaying) {
-    music.play().then(function() {
-      musicPlaying = true;
-      document.getElementById('music-btn').textContent = '🔊';
-    }).catch(function(){});
-  }
-  document.removeEventListener('click', startMusic);
-}, { once: true });
-
-// Also try autoplay immediately
-window.addEventListener('load', function() {
-  music.play().then(function() {
-    musicPlaying = true;
-  }).catch(function() {
-    // Autoplay blocked - user needs to click
-    document.getElementById('music-btn').style.animation = 'pulse-btn 1s ease-in-out infinite';
+const rawData=[
+  {name:"Mat Piczura",group:1,type:"gamer"},{name:"James Nelson",group:1,type:"gamer"},
+  {name:"Lucas Sartori",group:1,type:"gamer"},{name:"Zack Mattson",group:1,type:"gamer"},
+  {name:"Troy Harrell",group:1,type:"gamer"},{name:"Bob Ytteroy",group:2,type:"gamer"},
+  {name:"Kenneth Kludjeson",group:2,type:"gamer"},{name:"Molly Levin",group:2,type:"gamer"},
+  {name:"Mo Dalloul",group:2,type:"gamer"},{name:"Mack Lindelof",group:2,type:"gamer"},
+  {name:"Evelyn Ledger",group:2,type:"gamer"},{name:"Suzane Juste",group:3,type:"gamer"},
+  {name:"Joshua Pinto",group:3,type:"gamer"},{name:"Brad Patterson",group:3,type:"gamer"},
+  {name:"Hope Knepper",group:3,type:"gamer"},{name:"Coleman Hendricks",group:3,type:"gamer"},
+  {name:"Kelton Hinton",group:4,type:"gamer"},{name:"Aaron Bailey",group:4,type:"gamer"},
+  {name:"Nick Ruffino",group:4,type:"gamer"},{name:"Andreas Rossler",group:4,type:"gamer"},
+  {name:"Ashley Erickson",group:4,type:"gamer"},{name:"Will Kuntemeier",group:5,type:"mixed"},
+  {name:"Chaslyn Batchelor",group:5,type:"mixed"},{name:"Dan Moskowitz",group:5,type:"mixed"},
+  {name:"Kelli Chromey",group:5,type:"mixed"},{name:"Stefanie Furman",group:5,type:"mixed"},
+  {name:"Cody Ward",group:5,type:"mixed"},{name:"Halley Parsonnet",group:5,type:"mixed"},
+  {name:"Lindsay Ponzurick",group:6,type:"mixed"},{name:"Danielle Miranda",group:6,type:"mixed"},
+  {name:"Katie O'Malley",group:6,type:"mixed"},{name:"John Kersh",group:6,type:"mixed"},
+  {name:"Clayton Burriss",group:6,type:"mixed"},{name:"Cole Brickley",group:6,type:"mixed"},
+  {name:"Luke Kelley",group:7,type:"mixed"},{name:"Avi Levin",group:7,type:"mixed"},
+  {name:"Jake Collins",group:7,type:"mixed"},{name:"Michelle McMahon",group:7,type:"mixed"},
+  {name:"Haley Baker",group:7,type:"mixed"},{name:"Karri Howton",group:7,type:"mixed"},
+  {name:"Michelle Kello",group:8,type:"mixed"},{name:"Nancy Govea",group:8,type:"mixed"},
+  {name:"Abdullah Chaudhry",group:8,type:"mixed"},{name:"Priya Kambham",group:8,type:"mixed"},
+  {name:"Luiz Bahia",group:8,type:"mixed"},{name:"Meloney Walker",group:8,type:"mixed"},
+  {name:"Juliana Jovanoski",group:9,type:"mixed"},{name:"Lindsay Boyd",group:9,type:"mixed"},
+  {name:"Linda Moon",group:9,type:"mixed"},{name:"Michael Vacha",group:9,type:"mixed"},
+  {name:"Carlos Otero",group:9,type:"mixed"},{name:"Ricky Govea",group:9,type:"mixed"},
+  {name:"Keith Hamilton",group:10,type:"mixed"},{name:"Ellie Tirk",group:10,type:"mixed"},
+  {name:"Joe Brickley",group:10,type:"mixed"},{name:"Courtney Cox",group:10,type:"mixed"},
+  {name:"Ramon Suares",group:10,type:"mixed"},{name:"Lew Allard",group:10,type:"mixed"},
+  {name:"Srujana Routhu",group:11,type:"gamer"},{name:"Keller Beckstead",group:11,type:"mixed"},
+  {name:"Adam Schwartzman",group:11,type:"mixed"},{name:"Jenna Gatwood",group:11,type:"mixed"},
+  {name:"Austin Hendricks",group:11,type:"mixed"},{name:"Stephen VanRossem",group:11,type:"mixed"},
+  {name:"Olivia Sinnott",group:11,type:"mixed"},{name:"Juana Parodi",group:12,type:"mixed"},
+  {name:"Bill Duncan",group:12,type:"mixed"},{name:"Cavanaugh Blaes",group:12,type:"mixed"},
+  {name:"Melissa Newton",group:12,type:"mixed"},{name:"April Lewer",group:12,type:"mixed"},
+  {name:"Sang Lee",group:12,type:"mixed"},{name:"Paris Vincent",group:12,type:"mixed"},
+  {name:"Jessica Canterbury",group:13,type:"mixed"},{name:"Dylan Shamir",group:13,type:"mixed"},
+  {name:"Meera Lalakiya",group:13,type:"mixed"},{name:"Seth Sorensen",group:13,type:"mixed"},
+  {name:"Jason Fackler",group:13,type:"mixed"},{name:"Melissa Moran",group:13,type:"mixed"},
+  {name:"Carmen Chew",group:14,type:"mixed"},{name:"Juan Hirmas",group:14,type:"mixed"},
+  {name:"Rachel Carter",group:14,type:"mixed"},{name:"Michael Shelley",group:14,type:"mixed"},
+  {name:"Facundo Rogers Ford",group:14,type:"mixed"},{name:"Juan Buitrago",group:14,type:"mixed"},
+  {name:"Steve Martinez",group:14,type:"mixed"},{name:"Laura Bailey",group:15,type:"mixed"},
+  {name:"Melissa Mitchell Jitman",group:15,type:"mixed"},{name:"Brian Swanick",group:15,type:"mixed"},
+  {name:"Ryan Haack",group:15,type:"mixed"},{name:"Nick Candaffio",group:15,type:"mixed"},
+  {name:"Taylor Braunworth",group:15,type:"mixed"},{name:"Jackson Garnett",group:16,type:"mixed"},
+  {name:"Jenn Ravizza",group:16,type:"mixed"},{name:"Ann Huo",group:16,type:"mixed"},
+  {name:"Oscelius Farrar III",group:16,type:"mixed"},{name:"Donovan Floyd",group:16,type:"mixed"},
+  {name:"Dani Figueroa Fuentes",group:16,type:"mixed"},{name:"Nasim Neshat",group:17,type:"mixed"},
+  {name:"Adam Blacha",group:17,type:"mixed"},{name:"Angela Harris",group:17,type:"mixed"},
+  {name:"Seth Lipman",group:17,type:"mixed"},{name:"Andrea Patton",group:17,type:"mixed"},
+  {name:"Corey Curran",group:17,type:"mixed"},{name:"Alicia Tugmon",group:18,type:"mixed"},
+  {name:"Brittany Love",group:18,type:"mixed"},{name:"Daniel Goodall",group:18,type:"mixed"},
+  {name:"Josh Mesa",group:18,type:"mixed"},{name:"Rick Quigley",group:18,type:"mixed"},
+  {name:"Diana Pavao",group:18,type:"mixed"},{name:"Sodiq Mustapha",group:19,type:"mixed"},
+  {name:"Toni Allgood",group:19,type:"mixed"},{name:"Seun (Lara) Aiyekusibe",group:19,type:"mixed"},
+  {name:"Aaron Pfaff",group:19,type:"mixed"},{name:"Stephen Madden",group:19,type:"mixed"},
+  {name:"Marek Rogal",group:19,type:"mixed"},{name:"Javier Frontera",group:20,type:"mixed"},
+  {name:"Celina Andrade-Gomez",group:20,type:"mixed"},{name:"Hakim Azly",group:20,type:"mixed"},
+  {name:"Kristi Shoaf",group:20,type:"mixed"},{name:"Doug Sargent",group:20,type:"mixed"},
+  {name:"Chelsea Holmes",group:20,type:"mixed"},{name:"Nathan Bairen",group:21,type:"chatty"},
+  {name:"Mike Rubin",group:21,type:"chatty"},{name:"Dave Haffey",group:21,type:"mixed"},
+  {name:"Yulia Brynskikh",group:21,type:"chatty"},{name:"Daniel Gerardo",group:21,type:"chatty"},
+  {name:"Tara Fitts",group:21,type:"chatty"},{name:"Adam Baker",group:21,type:"chatty"},
+  {name:"Jacinda Foreste",group:22,type:"chatty"},{name:"Ashraf Elsharif",group:22,type:"chatty"},
+  {name:"Lauren Renz",group:22,type:"chatty"},{name:"Ed Chiang",group:22,type:"chatty"},
+  {name:"Josh Abbott",group:22,type:"chatty"},{name:"Martin Vivas",group:22,type:"chatty"},
+  {name:"Grace Beck",group:23,type:"chatty"},{name:"Ram Sethi",group:23,type:"chatty"},
+  {name:"Kevin Sosa",group:23,type:"chatty"},{name:"Nick Weismantel",group:23,type:"chatty"},
+  {name:"Logan Preston",group:23,type:"chatty"},{name:"Chris Gilhooley",group:23,type:"chatty"},
+  {name:"Thor Walker",group:24,type:"chatty"},{name:"Justin Roy",group:24,type:"chatty"},
+  {name:"Matt Brown",group:24,type:"chatty"},{name:"Tamara Brown",group:24,type:"chatty"},
+  {name:"Melissa Anderson",group:24,type:"chatty"},{name:"Adaora Ifeanyi",group:24,type:"mixed"},
+  {name:"Rebecca Fiorentino",group:25,type:"chatty"},{name:"Tiffany Kwong",group:25,type:"chatty"},
+  {name:"Phillip Holli-Arcus",group:25,type:"chatty"},{name:"Andres Gomez",group:25,type:"chatty"},
+  {name:"Deb Blaszkiewicz",group:25,type:"chatty"},{name:"Chris Gilhooley 2",group:25,type:"chatty"},
+  {name:"Daniel Lawson",group:26,type:"chatty"},{name:"Christiana Jusic",group:26,type:"chatty"},
+  {name:"Masha Vovk",group:26,type:"chatty"},{name:"Gabi Montesdeoca",group:26,type:"chatty"},
+  {name:"Matthew Tome",group:26,type:"chatty"},{name:"Cortney Paschal",group:26,type:"chatty"},
+  {name:"Ian Hilder",group:27,type:"chatty"},{name:"Maggie McDowell",group:27,type:"chatty"},
+  {name:"Chaitra Schmits",group:27,type:"chatty"},{name:"Julie Correa",group:27,type:"chatty"},
+  {name:"Blake DeBray",group:27,type:"chatty"},{name:"Penny Moore",group:27,type:"chatty"},
+  {name:"Natalie Arredondo",group:28,type:"chatty"},{name:"Caroline Heins",group:28,type:"mixed"},
+  {name:"Dorene Strand",group:28,type:"mixed"},{name:"Nikki Chinprapinporn",group:28,type:"chatty"},
+  {name:"Jocelyn Antiga",group:28,type:"chatty"},{name:"Martin Vivas 2",group:28,type:"chatty"},
+  {name:"Julie Culbertson",group:29,type:"chatty"},{name:"Armand Lucas",group:29,type:"chatty"},
+  {name:"Lauren Shirey-Lewis",group:29,type:"chatty"},{name:"Justin Seymour",group:29,type:"chatty"},
+  {name:"Randy Briggs",group:29,type:"chatty"},{name:"Katrice Peters",group:29,type:"chatty"},
+  {name:"Katia Ruelle",group:30,type:"mixed"},{name:"Susana Solis",group:30,type:"mixed"},
+  {name:"Aleksandar Stojkov",group:30,type:"mixed"},{name:"Vicky Xie",group:30,type:"mixed"},
+  {name:"Chelsea Agbon",group:30,type:"mixed"},{name:"Demi Henderson",group:30,type:"mixed"},
+  {name:"Michael Allen",group:30,type:"mixed"},{name:"Marija Atanasovska",group:30,type:"mixed"},
+  {name:"Bjorn Ter",group:30,type:"mixed"},{name:"Anita Fierati",group:30,type:"mixed"},
+];
+ 
+let state={};
+rawData.forEach(p=>{state[p.name]={group:p.group,type:p.type};});
+const N=30;
+ 
+function groupType(members){
+  const c={gamer:0,chatty:0,mixed:0};
+  members.forEach(m=>c[m.type]++);
+  return Object.entries(c).sort((a,b)=>b[1]-a[1])[0][0];
+}
+function initials(n){return n.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();}
+function sc(count){return count>=7?'r':count>=5?'y':'g';}
+function emoji(count){return count>=7?'🔴':count>=5?'🟡':'🟢';}
+function typeLabel(t){return t==='gamer'?'🎲 Gamers':t==='chatty'?'💬 Chatty':'⚡ Mixed';}
+ 
+function buildCard(g){
+  const members=Object.entries(state).filter(([,v])=>v.group===g).map(([n,v])=>({name:n,...v}));
+  const gt=groupType(members.length?members:[{type:'mixed'}]);
+  const s=sc(members.length);
+  const card=document.createElement('div');
+  card.className=`group-card type-${gt}`;
+  card.dataset.group=g;
+  card.innerHTML=`
+    <div class="group-header">
+      <div class="g-num">G${g}</div>
+      <div class="g-pill">${typeLabel(gt)}</div>
+      <div class="g-count"><span class="sz-dot ${s}"></span>${members.length}/7</div>
+    </div>
+    <div class="people-area" data-group="${g}"></div>`;
+  const area=card.querySelector('.people-area');
+  members.forEach(m=>area.appendChild(buildChip(m.name,gt)));
+  dropZone(area);
+  return card;
+}
+ 
+function buildChip(name,gt){
+  const c=document.createElement('div');
+  c.className='person-chip';c.dataset.name=name;c.draggable=true;
+  c.innerHTML=`<div class="p-avatar">${initials(name)}</div><span class="chip-name" title="${name}">${name}</span>`;
+  dragSetup(c);
+  return c;
+}
+ 
+function render(){
+  const grid=document.getElementById('groups-grid');
+  grid.innerHTML='';
+  for(let g=1;g<=N;g++) grid.appendChild(buildCard(g));
+  const ua=document.getElementById('un-area');
+  ua.innerHTML='';
+  const un=Object.entries(state).filter(([,v])=>v.group===0);
+  un.forEach(([n,v])=>ua.appendChild(buildChip(n,v.type)));
+  document.getElementById('un-count').textContent=un.length?`(${un.length} people)`:'';
+  dropZone(ua);
+}
+ 
+let dragged=null;
+const ghost=document.getElementById('ghost');
+ 
+function dragSetup(chip){
+  chip.addEventListener('dragstart',e=>{
+    dragged=chip.dataset.name;chip.classList.add('dragging');
+    ghost.textContent=chip.dataset.name;ghost.style.display='block';
+    e.dataTransfer.effectAllowed='move';e.dataTransfer.setDragImage(new Image(),0,0);
   });
+  chip.addEventListener('dragend',()=>{
+    chip.classList.remove('dragging');ghost.style.display='none';dragged=null;
+    document.querySelectorAll('.drag-over').forEach(el=>el.classList.remove('drag-over'));
+  });
+}
+ 
+document.addEventListener('dragover',e=>{
+  e.preventDefault();
+  ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px';
 });
-
-function toggleMusic() {
-  var btn = document.getElementById('music-btn');
-  if (musicPlaying) {
-    music.pause();
-    musicPlaying = false;
-    btn.textContent = '🔇';
-  } else {
-    music.play();
-    musicPlaying = true;
-    btn.textContent = '🔊';
-  }
-}
-</script>
-<style>
-@keyframes pulse-btn {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-}
-</style>
-<div id="video-wrapper" style="width:1920px;height:1080px;position:relative;overflow:hidden;">
-
-<!-- ══════ SCENE 1: Welcome ══════ -->
-<div class="scene active" id="s1">
-  <div class="blob"></div>
-  <div class="dot" style="width:24px;height:24px;background:#FFAC00;top:180px;left:200px;animation-delay:0s;"></div>
-  <div class="dot" style="width:16px;height:16px;background:#42A236;top:280px;left:130px;animation-delay:0.5s;"></div>
-  <div class="dot" style="width:30px;height:30px;background:#FFAC00;top:160px;right:260px;animation-delay:1.1s;"></div>
-  <div class="dot" style="width:18px;height:18px;background:#003316;bottom:280px;right:360px;animation-delay:0.6s;"></div>
-
-  <div class="welcome-label">✦ &nbsp; New Hire Onboarding &nbsp; ✦</div>
-  <h1>Welcome to Avicado! 🥑</h1>
-  <div class="subtitle">We are <span style="color:var(--lime-mid);font-weight:700;">so excited</span> about you joining us. 🎉</div>
-</div>
-
-<!-- ══════ SCENE 2: What is Happy Hour ══════ -->
-<div class="scene" id="s2">
-  <div class="blob-l"></div>
-  <div class="blob-r"></div>
-  <div class="top-label">✦ &nbsp; Meet your new favorite tradition &nbsp; ✦</div>
-  <h2>What is Happy Hour?</h2>
-  <div class="card" style="animation-delay:0.6s;z-index:2;">
-    <span class="card-icon">🥂</span>
-    <h3>Our weekly company connect</h3>
-    <p>Every week, the <strong>entire Avicado team</strong> comes together to have fun, connect with peers, and just enjoy each other's company. No work talk — just good vibes and great people.</p>
-  </div>
-  <div class="chip" style="top:780px;left:400px;animation-delay:1.0s;z-index:2;">
-    <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
-    Every Thursday
-  </div>
-  <div class="chip" style="top:780px;left:840px;animation-delay:1.2s;z-index:2;transform:none;">
-    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-    4:00 PM EST
-  </div>
-</div>
-
-<!-- ══════ SCENE 3: Thursday Ritual ══════ -->
-<div class="scene" id="s3">
-  <div class="top-label">✦ &nbsp; Mark Your Calendar &nbsp; ✦</div>
-  <h2>Every Thursday. 4 PM.</h2>
-  <div class="cal-card">
-    <div class="cal-header">📅 &nbsp; THURSDAY RITUAL</div>
-    <div class="cal-days"><span>M</span><span>T</span><span>W</span><span style="color:#003316;opacity:1;font-weight:800;">T</span><span>F</span><span>S</span><span>S</span></div>
-    <div class="cal-grid">
-      <span></span><span></span><span></span><span class="thu">1</span><span>2</span><span>3</span><span>4</span>
-      <span>5</span><span>6</span><span>7</span><span class="thu">8</span><span>9</span><span>10</span><span>11</span>
-      <span>12</span><span>13</span><span>14</span><span class="thu2">15</span><span>16</span><span>17</span><span>18</span>
-      <span>19</span><span>20</span><span>21</span><span class="thu">22</span><span>23</span><span>24</span><span>25</span>
-      <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span></span>
-    </div>
-  </div>
-  <div class="info-block">
-    <div class="info-item fade-abs" style="animation-delay:0.7s;">
-      <div class="info-icon">🗓️</div>
-      <div><div class="info-label">Day</div><div class="info-value">Every Thursday</div></div>
-    </div>
-    <div class="info-item fade-abs" style="animation-delay:0.9s;">
-      <div class="info-icon">🕓</div>
-      <div><div class="info-label">Time</div><div class="info-value">4:00 PM EST</div></div>
-    </div>
-    <div class="info-item fade-abs" style="animation-delay:1.1s;">
-      <div class="info-icon">🌎</div>
-      <div><div class="info-label">Who joins</div><div class="info-value">The entire Avicado team</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════ SCENE 4: What we do ══════ -->
-<div class="scene" id="s4">
-  <div class="top-label">✦ &nbsp; Good times guaranteed &nbsp; ✦</div>
-  <h2>What goes down at Happy Hour</h2>
-  <div class="activity-grid">
-    <div class="act-card fade-abs" style="animation-delay:0.6s;">
-      <div class="act-icon green">🗣️</div>
-      <div class="act-badge green">Connect</div>
-      <h3>Meet your peers</h3>
-      <p>Real conversations with real people. No slide decks, no agendas — just getting to know the humans behind the work.</p>
-    </div>
-    <div class="act-card fade-abs" style="animation-delay:0.8s;">
-      <div class="act-icon gold">🎮</div>
-      <div class="act-badge gold">Play</div>
-      <h3>Team games</h3>
-      <p>Some weeks we play games together — trivia, icebreakers, and all sorts of fun challenges that bring out our competitive side.</p>
-    </div>
-    <div class="act-card fade-abs" style="animation-delay:1.0s;">
-      <div class="act-icon lime">🏆</div>
-      <div class="act-badge lime">Win</div>
-      <h3>Prizes up for grabs</h3>
-      <p>Sometimes there are prizes! We love celebrating our team and making sure every Thursday is worth showing up for.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ══════ SCENE 5: Choose your group ══════ -->
-<div class="scene" id="s5">
-  <div class="top-label">✦ &nbsp; Breakout rooms — Pick your vibe &nbsp; ✦</div>
-  <h2>Choose your group.</h2>
-  <div class="group-grid">
-    <div class="grp-card chatty fade-abs" style="animation-delay:0.6s;">
-      <span class="grp-emoji">💬</span>
-      <div class="grp-name">Chatty Ones</div>
-      <p class="grp-desc">Love meeting new people and having great conversations? This is your crew.</p>
-    </div>
-    <div class="grp-card gamer fade-abs" style="animation-delay:0.8s;">
-      <span class="grp-emoji">🎮</span>
-      <div class="grp-name">Gamers</div>
-      <p class="grp-desc">Prefer a little friendly competition? Jump in and play a game together as a team.</p>
-    </div>
-    <div class="grp-card mix fade-abs" style="animation-delay:1.0s;">
-      <span class="grp-emoji">🌟</span>
-      <div class="grp-name">The Mix</div>
-      <p class="grp-desc">Love both? This group does it all — some chats, some games, and all the good vibes in between.</p>
-    </div>
-  </div>
-  <div class="juana-callout">
-    📩 Let Juana &amp; Jackie know your preference!
-  </div>
-</div>
-
-<!-- ══════ SCENE 6: Closing ══════ -->
-<div class="scene" id="s6">
-  <div class="blob-tl"></div>
-  <div class="blob-br"></div>
-  <div class="dot" style="width:32px;height:32px;background:#FFAC00;top:200px;left:240px;animation-delay:0s;"></div>
-  <div class="dot" style="width:22px;height:22px;background:#003316;top:350px;left:160px;animation-delay:0.5s;"></div>
-  <div class="dot" style="width:26px;height:26px;background:#FFAC00;top:140px;right:280px;animation-delay:0.9s;"></div>
-  <div class="dot" style="width:18px;height:18px;background:#003316;bottom:260px;left:380px;animation-delay:0.4s;"></div>
-
-  <div class="top-label" style="z-index:4;">✦ &nbsp; See you there &nbsp; ✦</div>
-  <h2 style="z-index:4;">See you on Thursday! 🥑</h2>
-  <div class="tagline" style="z-index:4;">Happy Hour · Thursdays · 4 PM EST</div>
-
-</div>
-
-<div id="progress"><div id="progress-bar"></div></div>
-
-<script>
-
-
-const SCENES = ['s1','s2','s3','s4','s5','s6'];
-const DURATIONS = [6000, 6500, 6500, 7000, 12000, 6000];
-let current = 0;
-let startTime = Date.now();
-let sceneStart = Date.now();
-let totalDuration = DURATIONS.reduce((a,b)=>a+b,0);
-
-function showScene(idx) {
-  SCENES.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.classList.remove('active');
+ 
+function dropZone(area){
+  area.addEventListener('dragover',e=>{
+    e.preventDefault();
+    area.closest('.group-card,.unassigned-section')?.classList.add('drag-over');
   });
-  const newEl = document.getElementById(SCENES[idx]);
-  if (!newEl) return;
-  // Reset CSS animations by forcing reflow
-  newEl.style.display = 'none';
-  void newEl.offsetHeight;
-  newEl.style.display = '';
-  newEl.classList.add('active');
+  area.addEventListener('dragleave',e=>{
+    if(!area.contains(e.relatedTarget))
+      area.closest('.group-card,.unassigned-section')?.classList.remove('drag-over');
+  });
+  area.addEventListener('drop',e=>{
+    e.preventDefault();if(!dragged)return;
+    state[dragged].group=parseInt(area.dataset.group);render();
+  });
 }
-
-function tick() {
-  const now = Date.now();
-  const elapsed = now - sceneStart;
-  const totalElapsed = now - startTime;
-  const progress = Math.min(totalElapsed / totalDuration, 1);
-  document.getElementById('progress-bar').style.width = (progress * 100) + '%';
-  if (elapsed >= DURATIONS[current]) {
-    current = (current + 1) % SCENES.length;
-    if (current === 0) startTime = Date.now();
-    sceneStart = Date.now();
-    showScene(current);
+ 
+function openModal(){
+  const sel=document.getElementById('inp-group');
+  sel.innerHTML='<option value="0">— Unassigned</option>';
+  for(let g=1;g<=N;g++){
+    const m=Object.values(state).filter(v=>v.group===g);
+    sel.innerHTML+=`<option value="${g}">${emoji(m.length)} Group ${g} (${m.length})</option>`;
   }
-  requestAnimationFrame(tick);
+  document.getElementById('inp-name').value='';
+  document.getElementById('inp-type').value='mixed';
+  clearErr();
+  document.getElementById('modal-overlay').classList.add('open');
+  setTimeout(()=>document.getElementById('inp-name').focus(),80);
 }
-requestAnimationFrame(tick);
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');}
+function maybeClose(e){if(e.target===document.getElementById('modal-overlay'))closeModal();}
+function clearErr(){document.getElementById('m-err').classList.remove('show');}
+ 
+function submitModal(){
+  const name=document.getElementById('inp-name').value.trim();
+  const group=parseInt(document.getElementById('inp-group').value);
+  const type=document.getElementById('inp-type').value;
+  const err=document.getElementById('m-err');
+  if(!name){err.textContent='Please enter a name!';err.classList.add('show');return;}
+  if(state[name]){err.textContent='This name already exists!';err.classList.add('show');return;}
+  state[name]={group,type};closeModal();render();
+  const t=group===0
+    ?document.getElementById('unassigned-section')
+    :document.querySelector('.group-card[data-group="'+group+'"]');
+  if(t){
+    t.style.transition='box-shadow .2s';
+    t.style.boxShadow='0 0 0 2.5px #DCE58A,0 0 20px rgba(220,229,138,.25)';
+    setTimeout(()=>{t.style.boxShadow='';},900);
+  }
+}
+ 
+render();
 </script>
-</div>
 </body>
 </html>
